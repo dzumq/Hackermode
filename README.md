@@ -1,5 +1,10 @@
 # Hackermode
 
+<p align="center">
+  <img src="Hackermode.png" alt="Hackermode screenshot" width="900">
+</p>
+
+
 Due to Popular demand the Hackermode script from Linux-Larp is now it's own standalone shell script you can run anywhere from your terminal :)
 
 Hackermode is a joke terminal that displays fake hacking output whenever you type. It is inspired by the site hackertyper and is meant to make you "LOOK" like you're hacking something
@@ -37,7 +42,7 @@ Hackermode can then be launched from anywhere by running:
 hackermode
 ```
 
-Press Escape five times to enter a normal Bash shell.
+# Press Escape five times to escape the script and enter a normal Bash shell.
 
 ## Manual Installation
 

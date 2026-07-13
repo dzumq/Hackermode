@@ -1,0 +1,169 @@
+#!/usr/bin/env bash
+
+exec python3 /dev/fd/3 "$@" 3<<'PYTHON_SCRIPT'
+#!/usr/bin/env python3
+
+import os
+import random
+import sys
+import termios
+import time
+import tty
+
+STARTING_LINES = [
+    "[ OK ] Mounted /dev/mainframe",
+    "[ OK ] Contacted Lain to help HACK",
+    "[ OK ] Loading Hacker tools............",
+    "[ OK ] Connected to anonymization proxy",
+    "[ OK ] Started Google Chrome OPSEC protocol",
+    "[ OK ] Checked for duplicate French language packs",
+    "[WARN] Extra French language pack detected: run 'sudo rm -fr /*",
+    "[ OK ] Routing packets through 17 proxies and tor",
+    "[ OK ] Compiling IP tracker",
+    "[ OK ] Injecting vibecoding AI Agent capabilities",
+    "[ OK ] Syncing aura with mainframe",
+    "[ OK ] Initializing hackertyper compatibility layer",
+    "[ OK ] Terminal integrity status: Ready to Hack",
+]
+##add more lines after u make warning stuff red 
+HACKER_LINES = [
+    "bypassing firewall node 0x7fa3...",
+    "decrypting classified kernel payload...",
+    "injecting packets into quantum socket...",
+    "spoofing MAC address through darknet relay...",
+    "compiling exploit chain: [██████████] 100%",
+    "compiling obelisk cannon matrix algorithm: [██████████] 100%",
+    "accessing mainframe...",
+    "routing through 12784 proxychains...",
+    "mounting encrypted cyberdeck volume...",
+    "running encryption proxy through cybertruck",
+    "uploading worm to server...",
+    "cracking sudo password with AI Hacker Agent...",
+    "HACKING.....................",
+    "scanning asshole parameters and dimensions...",
+    "uploading HACK Payload into the buttplug...",
+    "using Google Chrome for privacy",
+    "backdooring Google Chrome telemetry and hacking it",
+    "syncing aura with google-chrome-stable",
+    "Routing dildo-payload through the cloud quantum computer network connected to the relay server obelisk",
+    "routing DNS through the secure tunnel and putting it through the shell script and ip logger",
+    "mounting the rootkit into the operating system and central controlling unit of the motherboard of the corporated mainframe server rack",
+    "deploying tracking countermeasures to remain anonymous",
+    "DDOSING the main panopticon surveillance patriarchial web of selecter modules being loaded into the deck",
+    "Jacking into jackie from cyberpunk 2077's buthhole and relaying it through the proxy module and larpy package manager",
+    "ACCESS GRANTED",
+    "TRACE SPOOFED",
+    "MAINFRAME BREACHED",
+    "ENCRYPTION DEFEATED BY INJECTION SUITE HACKER TOOLKIT MODULE",
+    "root@mainframe:/blacksite# ./hacker_mode",
+    "SELECT * FROM secrets WHERE clearance='lain';",
+    "curling payload from http://hacker-module-obelisk-cannon.larp",
+    "sudo touch rootkit",
+    "ssh root@mainframe -p 31337",
+    "executing low orbit ion cannon",
+    "export HACKING_LEVEL_UNLOCKED=9999",
+    "iptables -A LAIN -j MODULEDDOSKILLER",
+    "nmap -sV -O 127.0.0.1 --ddos-and-take-out-network --aggressive-mode",
+]
+## add more warninghs
+WARNING_STUFF = [
+    "!!! WARNING: COUNTER-HACKER DETECTED - IDENTITY: AIDEN PIERCE !!!",
+    "!!! COUNTERMEASURE DETECTION ALGORITHM FAILED - YOUR LOCATION IS COMPROMISED !!!",
+    "!!! FIREWALL STATUS: ATTEMPTED BREACH FROM SURVEILLANCE BRANCH OF THE PANOPTICON !!!",
+    "!!! VIRUS FOUND IN YOUR OWN MAINFRAME... REMOVING AND DEPLOYING COUNTERMEASURES NOW !!!",
+    "!!! GOVERNMENT TRACE ATTEMPTED ON CURRENT LOCATION !!!",
+    "!!! CYBER POLICE TRACE REVERSED AND TROJAN UPLOADED TO THEIR MOTHERBOARD !!!",
+    "!!! LARP LIMIT REACHED... RESOURCES DEPLETING FROM TOO MUCH CRINGE, ABORT HACK NOW !!!",
+]
+
+PROMPT = f"{os.environ.get('USER', 'user')}@{os.uname().nodename}:~$ "
+
+#
+GREEN = "\033[32m"
+RED = "\033[31m"
+RESETTOGREEN = "\033[32m"
+
+
+def write(text):
+    sys.stdout.write(text)
+    sys.stdout.flush()
+
+def slowerline(text, delay=0.003):
+    for ch in text:
+        write(ch)
+        time.sleep(delay)
+    write("\r\n")
+
+def startup_func():
+    write("\033[2J\033[H")
+    write(GREEN)
+
+    for line in STARTING_LINES:
+        slowerline(line)
+        time.sleep(random.uniform(0.03, 0.1))
+
+    write("\r\n")
+    slowerline("hackermode initialized.")
+    slowerline("all hacking daemons and modules loaded into the motherboard, hacking is ready to begin.")
+    write(PROMPT)
+
+##---------------------------------##
+##make it reset back to green because it stays red after warning line prints and the HACKER_LINES stay red indefinitely
+def hacking_burst():
+    for _ in range(random.randint(1, 8)):
+        if random.random() < 0.08:
+            write(RED)
+            slowerline(random.choice(WARNING_STUFF))
+            write(RESETTOGREEN)
+        else:
+            slowerline(random.choice(HACKER_LINES))
+        time.sleep(random.uniform(0.05, 0.15))
+##---------------------------_##
+
+
+def main():
+    old_settings = termios.tcgetattr(sys.stdin)
+
+    try:
+        tty.setraw(sys.stdin.fileno())
+        startup_func()
+        esc_count = 0
+
+        while True:
+            ch = sys.stdin.read(1)
+
+            if ch == "\x1b":
+                esc_count += 1
+                if esc_count >= 5:
+                    write("\r\n\r\nEntering Alternate Terminal\r\n\033[0m")
+                    termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
+                    os.execvp("/bin/bash", ["/bin/bash"])
+                else:
+                    write("\r\n[ESCAPE ATTEMPT LOGGED BY CYBER TASK FORCE!!!! DEPLOYING COuntER HACK TO SPOOF GEO LOCATION AND MAINTAIN OPSEC]\r\n" + PROMPT)
+                continue
+            else:
+                esc_count = 0
+
+            if ch == "\x03":
+                write("\r\nAbort attempt ignored. Mainframe log exploded. You must finish your hack and acheive greater heihgts of larping\r\n" + PROMPT)
+                continue
+
+            if ch == "\x04":
+                write("\r\nlogout denied. Hack deployment failed comrade larp.. try again.\r\n" + PROMPT)
+                continue
+
+            if ch in ["\r", "\n"]:
+                hacking_burst()
+                write("\r\n" + PROMPT)
+                continue
+
+            hacking_burst()
+            write(PROMPT)
+
+    finally:
+        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
+        write("\033[0m")
+
+if __name__ == "__main__":
+    main()
+PYTHON_SCRIPT
